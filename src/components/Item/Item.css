@@ -1,0 +1,17 @@
+.Item {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+}
+
+.Item__title {
+  flex-grow: 1;
+}
+
+.Item__checkbox {
+  flex-shrink: 0;
+}
+
+.Item__button {
+  flex-shrink: 0;
+}

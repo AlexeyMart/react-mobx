@@ -1,9 +1,14 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { List } from "./components/List/List";
+import { AddForm } from "./components/AddForm/AddForm";
 
 function App() {
-  return <div className="App">Implement me</div>;
+  return (
+    <div className="App">
+      <AddForm />
+      <List />
+    </div>
+  );
 }
 
 export default App;
