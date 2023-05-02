@@ -2,12 +2,15 @@ import { makeAutoObservable } from "mobx";
 import { ToDoItem } from "../types";
 import { v4 } from "uuid";
 
+const initialTodos: ToDoItem[] = [
+  { title: "Wake up", done: false, id: v4() },
+  { title: "Get a coffee", done: false, id: v4() },
+];
+
 class Store {
-  list: ToDoItem[] = [
-    { title: "Wake up", done: false, id: v4() },
-    { title: "Get a coffee", done: false, id: v4() },
-  ];
+  list: ToDoItem[] = [];
   newToDo: string = "";
+  loading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -34,6 +37,19 @@ class Store {
   public addToDo = (title: ToDoItem["title"]) => {
     this.list.push({ title, id: v4(), done: false });
     this.newToDo = "";
+  };
+
+  public fetchInitialData = async () => {
+    this.loading = true;
+
+    const result: ToDoItem[] = await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(initialTodos);
+      }, 1500);
+    });
+
+    this.list = result;
+    this.loading = false;
   };
 }
 
